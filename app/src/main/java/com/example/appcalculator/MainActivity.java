@@ -124,7 +124,9 @@ public class MainActivity extends AppCompatActivity {
         if(isNumber()){
 
             calculator.addData(Double.parseDouble(auxNum));
+
             setAuxNum("/");
+
             calculator.addData(auxNum);
 
 
