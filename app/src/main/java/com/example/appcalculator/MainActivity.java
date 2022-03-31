@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
             calculator.addData(auxNum);
 
 
+
         }else{
             System.out.println("Error");
         }
