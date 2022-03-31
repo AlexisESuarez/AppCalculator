@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,8 +45,21 @@ public class MainActivity extends AppCompatActivity {
         editTextTextMultiLine = findViewById(R.id.editTextTextMultiLine);
     }
 
+    public void writeCero(View view){
+        if (isEmpty()){
+            num1 = Float.parseFloat(editTextTextMultiLine.getText().toString());
+        }
+        if (num1 == 0.0f){
+            editTextTextMultiLine.setText("0");
+        }else{
+            editTextTextMultiLine.setText(editTextTextMultiLine.getText() + "0");
+        }
+    }
+
     public void writeOne(View view){
-        num1 = Float.parseFloat(editTextTextMultiLine.getText().toString());
+        if (isEmpty()){
+            num1 = Float.parseFloat(editTextTextMultiLine.getText().toString());
+        }
         if (num1 == 0.0f){
             editTextTextMultiLine.setText("1");
         }else{
@@ -53,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void writeTwo(View view){
-        num1 = Float.parseFloat(editTextTextMultiLine.getText().toString());
+        if (isEmpty()){
+            num1 = Float.parseFloat(editTextTextMultiLine.getText().toString());
+        }
         if (num1 == 0.0f){
             editTextTextMultiLine.setText("2");
         }else{
@@ -123,5 +139,57 @@ public class MainActivity extends AppCompatActivity {
         num2 = 0.0f;
         operation = "";
     }
+
+    public void divide(View view){
+        num1 = Float.parseFloat(editTextTextMultiLine.getText().toString());
+        operation = "/";
+        editTextTextMultiLine.setText("0");
+
+    }
+    public void multiply(View view){
+        num1 = Float.parseFloat(editTextTextMultiLine.getText().toString());
+        operation = "*";
+        editTextTextMultiLine.setText("0");
+
+    }
+    public void add(View view){
+        num1 = Float.parseFloat(editTextTextMultiLine.getText().toString());
+        operation = "+";
+        editTextTextMultiLine.setText("0");
+
+    }
+    public void subtract(View view){
+        num1 = Float.parseFloat(editTextTextMultiLine.getText().toString());
+        operation = "-";
+        editTextTextMultiLine.setText("0");
+    }
+
+    public boolean isEmpty(){return num1 == 0f;}
+
+    public void same(View view){
+        num2 = Float.parseFloat(editTextTextMultiLine.getText().toString());
+        if (operation.equals("/")){
+            if (num2 == 0.0f){
+                editTextTextMultiLine.setText("0");
+                Toast.makeText(this, "OPERACION NO VALIDA", Toast.LENGTH_SHORT).show();
+            }else {
+                float result = num1 / num2;
+                editTextTextMultiLine.setText(result + "");
+            }
+        }else if (operation.equals("*")){
+            float result = num1*num2;
+            editTextTextMultiLine.setText(result + "");
+        }else if (operation.equals("+")){
+            float result = num1+num2;
+            editTextTextMultiLine.setText(result + "");
+        }else if (operation.equals("-")){
+            float result = num1-num2;
+            editTextTextMultiLine.setText(result + "");
+        }
+        num1 = 0.0f;
+        num2 = 0.0f;
+        operation = "";
+    }
+
 
 }
