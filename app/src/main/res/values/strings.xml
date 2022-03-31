@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AppCalculator</string>
+    <string name="b1">ImageButton1</string>
+    <string name="b2">ImageButton2</string>
+    <string name="b3">ImageButton3</string>
+    <string name="b4">ImageButton4</string>
+    <string name="b5">ImageButton5</string>
+    <string name="b6">ImageButton6</string>
+    <string name="b7">ImageButton7</string>
+    <string name="b8">ImageButton8</string>
+    <string name="b9">ImageButton9</string>
+    <string name="b10">ImageButton10</string>
+    <string name="b11">ImageButton11</string>
+    <string name="b12">ImageButton12</string>
+    <string name="b13">ImageButton13</string>
+    <string name="b14">ImageButton14</string>
+    <string name="b15">ImageButton15</string>
+    <string name="b16">ImageButton16</string>
+    <string name="b17">ImageButton17</string>
+    <string name="b18">ImageButton18</string>
+    <string name="b19">ImageButton19</string>
+    <string name="b20">ImageButton20</string>
+</resources>

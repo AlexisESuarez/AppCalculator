@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="412dp"
+        android:layout_height="420dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        android:digits="1234567890 "
+        android:ems="10"
+        android:enabled="false"
+        android:gravity="end|bottom"
+        android:hint="number"
+        android:inputType="textMultiLine"
+        android:paddingStart="5dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        android:text="0"
+        android:textAlignment="gravity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:layout_width="402dp"
+        android:layout_height="482dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/bAc"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b1"
+                app:srcCompat="@mipmap/ac" />
+
+            <ImageButton
+                android:id="@+id/bBorrar"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b2"
+                app:srcCompat="@mipmap/borrar" />
+
+            <ImageButton
+                android:id="@+id/bPorcentaje"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@mipmap/porcentaje" />
+
+            <ImageButton
+                android:id="@+id/bDividir"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b4"
+                app:srcCompat="@mipmap/dividir" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/b7"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b5"
+                android:onClick="writeSeven"
+                app:srcCompat="@mipmap/siete" />
+
+            <ImageButton
+                android:id="@+id/b8"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b6"
+                android:onClick="writeEigth"
+                app:srcCompat="@mipmap/ocho" />
+
+            <ImageButton
+                android:id="@+id/b9"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b7"
+                app:srcCompat="@mipmap/nueve" />
+
+            <ImageButton
+                android:id="@+id/bMultiplicar"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@mipmap/por" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/b4"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b9"
+                app:srcCompat="@mipmap/cuatro" />
+
+            <ImageButton
+                android:id="@+id/b5"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b10"
+                app:srcCompat="@mipmap/cinco" />
+
+            <ImageButton
+                android:id="@+id/b6"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b11"
+                app:srcCompat="@mipmap/seis" />
+
+            <ImageButton
+                android:id="@+id/bRestar"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@mipmap/restar" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/b1"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b13"
+                app:srcCompat="@mipmap/uno" />
+
+            <ImageButton
+                android:id="@+id/b2"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b14"
+                app:srcCompat="@mipmap/dos" />
+
+            <ImageButton
+                android:id="@+id/b3"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b15"
+                app:srcCompat="@mipmap/tres" />
+
+            <ImageButton
+                android:id="@+id/bSumar"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b16"
+                app:srcCompat="@mipmap/suma" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/bFN"
+                android:layout_width="106dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b17"
+                app:srcCompat="@mipmap/fn" />
+
+            <ImageButton
+                android:id="@+id/b0"
+                android:layout_width="101dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b18"
+                app:srcCompat="@mipmap/cero" />
+
+            <ImageButton
+                android:id="@+id/bPunto"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b19"
+                app:srcCompat="@mipmap/punto" />
+
+            <ImageButton
+                android:id="@+id/bIgual"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#ffffff"
+                android:contentDescription="@string/b20"
+                app:srcCompat="@mipmap/igual" />
+        </TableRow>
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
