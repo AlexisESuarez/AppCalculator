@@ -66,6 +66,7 @@
                 android:layout_height="50dp"
                 android:backgroundTint="#ffffff"
                 android:contentDescription="@string/b2"
+                android:onClick="deleteLast"
                 app:srcCompat="@mipmap/borrar" />
 
             <ImageButton

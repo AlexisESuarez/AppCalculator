@@ -10,7 +10,6 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView textCalc;
-
     private Calculator calculator;
     private String auxNum = "";
 
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             addIUText(number);
         }
 
-        if(isNumber() || containsPoint()) {
+        if(isNumber() || containsPoint() || (calculator.getLastOperation().toString() != Strings.SUBTRACT && auxNum.equals(Strings.SUBTRACT))) {
             auxNum += number;
         } else {
             setAuxNum(number);
@@ -52,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public void writeSeven(View view){ addNumber("7"); }
     public void writeEight(View view){ addNumber("8"); }
     public void writeNine(View view){ addNumber("9"); }
+
     public void writePoint(View view) {
         if(isNumber() && !containsPoint()) {
             addIUText(".");
@@ -66,6 +66,18 @@ public class MainActivity extends AppCompatActivity {
         calculator = new Calculator();
     }
 
+    public void deleteLast(View view) {
+
+        if(!isEmpty()) {
+
+            auxNum = (isNumber() || containsPoint() || auxNum.equals(Strings.SUBTRACT)) ? auxNum.substring(0, auxNum.length() - 1) : (String) calculator.deleteLastOperation();
+            calculator.deleteValue();
+            textCalc.setText(textCalc.getText().toString().substring(0, textCalc.getText().toString().length() - 1));
+
+        }
+
+    }
+
     public boolean isNumber(){
         try {
             Double.parseDouble(auxNum);
@@ -77,9 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void addOperation(String operation) {
         if(isNumber()){
-            calculator.addData(Double.parseDouble(auxNum));
+            calculator.addData(auxNum);
             setAuxNum(operation);
             calculator.addData(auxNum);
+            calculator.concatValue(operation);
             addIUText(operation);
         }else{
             System.out.println("Error");
@@ -102,7 +115,15 @@ public class MainActivity extends AppCompatActivity {
         auxNum = operation;
     }
 
-    public boolean isEmpty(){ return auxNum.equals("") && calculator.getOperation().equals(""); }
+    public boolean isEmpty(){
+
+        // System.out.println(calculator.getOperations().size());
+
+        System.out.println(auxNum);
+        System.out.println(calculator.getOperation());
+
+        return auxNum.equalsIgnoreCase("") && calculator.getOperation().equalsIgnoreCase("");
+    }
 
     public void same(View view){
 
