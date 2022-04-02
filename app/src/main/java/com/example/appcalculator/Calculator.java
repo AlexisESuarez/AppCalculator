@@ -107,6 +107,7 @@ public class Calculator {
                     delete.clear();
 
                     break;
+
             }
         }
         for (int i = 1; i < operations.toArray().length; i = +2) {
