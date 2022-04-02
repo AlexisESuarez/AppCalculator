@@ -133,6 +133,4 @@ public class Calculator {
     public void addData(Object data){
         operations.add(data);
     }
-
-
 }
