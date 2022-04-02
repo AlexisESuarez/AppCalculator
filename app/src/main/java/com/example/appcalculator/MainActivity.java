@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     String operation = "";
     TextView textCalc;
 
-
     private ImageButton bAc;
     private ImageButton bRestar;
     private ImageButton bDividir;
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         if(calculator.getOperation().equals("")){
             textCalc.setText(number);
-
         }else {
             addText(number);
         }
@@ -152,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
             float result = num1-num2;
             editTextTextMultiLine.setText(result + "");
         }*/
+
         num1 = 0.0f;
         num2 = 0.0f;
         operation = "";
