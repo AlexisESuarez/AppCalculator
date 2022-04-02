@@ -253,7 +253,7 @@
                 android:layout_height="50dp"
                 android:backgroundTint="#ffffff"
                 android:contentDescription="@string/b20"
-                android:onClick="same"
+                android:onClick="showResult"
                 app:srcCompat="@mipmap/igual" />
         </TableRow>
     </TableLayout>

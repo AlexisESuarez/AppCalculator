@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -159,6 +160,16 @@ public class MainActivity extends AppCompatActivity {
         textCalc.setText(op);
     }
 
+    public void showResult(View view){
+        if (isNumber()){
+            calculator.addData(auxNum);
+            textCalc.setText(calculator.calcOperation().toString());
+        }else {
+            Toast.makeText(this, "El ultimo número ingresado esta mal.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public boolean containsPoint() { return auxNum.contains("."); }
+
 
 }

@@ -13,7 +13,7 @@ public class Calculator {
 
     private ArrayList<Object> operations = new ArrayList<>();
 
-    private ArrayList<Object> auxOperations = operations;
+    private ArrayList<Object> auxOperations;
 
     public Calculator() {
         this.operation = "";
@@ -68,6 +68,66 @@ public class Calculator {
         operation = operation.substring(0, operation.length() - op.toString().length());
 
         return op;*/
+    }
+
+    public Double calcOperation() {
+
+        double result = 0;
+        auxOperations = operations;
+
+        for (int i = 1; i < operations.toArray().length; i = +2) {
+
+            double resultOperation;
+            ArrayList<Object> delete = new ArrayList<>();
+
+            switch (auxOperations.get(i).toString()) {
+                case Strings.DIVISION:
+
+
+                    resultOperation = Double.parseDouble(operations.get(i - 1).toString()) / Double.parseDouble(operations.get(i + 1).toString());
+
+                    delete.add(auxOperations.get(i - 1));
+                    delete.add(auxOperations.get(i + 1));
+                    delete.add(auxOperations.get(i));
+
+                    auxOperations.removeAll(delete);
+                    auxOperations.add(i - 1, resultOperation);
+
+                    delete.clear();
+
+                    break;
+
+                case Strings.MULTIPLICATY:
+                    resultOperation = Double.parseDouble(operations.get(i - 1).toString()) * Double.parseDouble(operations.get(i + 1).toString());
+
+                    delete.add(auxOperations.get(i - 1));
+                    delete.add(auxOperations.get(i + 1));
+                    delete.add(auxOperations.get(i));
+
+                    delete.clear();
+
+                    break;
+            }
+        }
+
+        for (int i = 1; i < operations.toArray().length; i = +2) {
+
+
+            switch (auxOperations.get(i).toString()) {
+                case Strings.SUBTRACT:
+
+                    result += Double.parseDouble(operations.get(i - 1).toString()) - Double.parseDouble(operations.get(i + 1).toString());
+                    break;
+
+                case Strings.SUM:
+
+                    result += Double.parseDouble(operations.get(i - 1).toString()) + Double.parseDouble(operations.get(i + 1).toString());
+                    break;
+            }
+        }
+
+        return result;
+
     }
 
     public void addData(Object data){
