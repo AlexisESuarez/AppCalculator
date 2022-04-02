@@ -234,6 +234,7 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="#ffffff"
                 android:contentDescription="@string/b18"
+                android:onClick="writeZero"
                 app:srcCompat="@mipmap/cero" />
 
             <ImageButton
@@ -242,6 +243,7 @@
                 android:layout_height="50dp"
                 android:backgroundTint="#ffffff"
                 android:contentDescription="@string/b19"
+                android:onClick="writePoint"
                 app:srcCompat="@mipmap/punto" />
 
             <ImageButton
