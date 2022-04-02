@@ -2,12 +2,10 @@ package com.example.appcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     double num1 = 0.0f;
     double num2 = 0.0f;
     String operation = "";
-    TextView editTextTextMultiLine;
+    TextView textCalc;
 
 
     private ImageButton bAc;
@@ -46,31 +44,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editTextTextMultiLine = findViewById(R.id.editTextTextMultiLine);
+        textCalc = findViewById(R.id.etCalc);
 
         calculator = new Calculator();
-
-    }
-
-    public void writeCero(View view){
-
-        addNumber("0");
 
     }
 
     public void addNumber(String number){
 
         if(calculator.getOperation().equals("")){
-            editTextTextMultiLine.setText(number);
+            textCalc.setText(number);
 
         }else {
-            String aux = editTextTextMultiLine.getText() + number;
-            editTextTextMultiLine.setText(aux);
+            addText(number);
         }
-        auxNum += number;
+
+        if(isNumber() || auxNum.contains(".")) {
+            auxNum += number;
+        } else {
+            setAuxNum(number);
+        }
+
         calculator.concatValue(number);
     }
 
+    public void writeCero(View view){
+        addNumber("0");
+    }
     public void writeOne(View view){
        addNumber("1");
     }
@@ -83,29 +83,18 @@ public class MainActivity extends AppCompatActivity {
     public void writeFour(View view){
         addNumber("4");
     }
-    public void writeFive(View view){
-        addNumber("5");
-
-    }
+    public void writeFive(View view){ addNumber("5"); }
     public void writeSix(View view){
         addNumber("6");
-
     }
-    public void writeSeven(View view){
-        addNumber("7");
-
-    }
-    public void writeEigth(View view){
-        addNumber("8");
-
-    }
+    public void writeSeven(View view){ addNumber("7"); }
+    public void writeEight(View view){ addNumber("8"); }
     public void writeNine(View view){
         addNumber("9");
-
     }
 
     public void clear(View view){
-        editTextTextMultiLine.setText("0");
+        textCalc.setText("0");
         num1 = 0;
         num2 = 0;
         operation = "";
@@ -119,43 +108,26 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
-    public void divide(View view){
 
+    public void addOperation(String operation) {
         if(isNumber()){
-
             calculator.addData(Double.parseDouble(auxNum));
-
-            setAuxNum("/");
-
+            setAuxNum(operation);
             calculator.addData(auxNum);
-
-
-
+            addText(operation);
         }else{
             System.out.println("Error");
         }
-
     }
-    public void multiply(View view){
-        num1 = Double.parseDouble(editTextTextMultiLine.getText().toString());
-        operation = "*";
-        editTextTextMultiLine.setText("0");
 
-    }
+    public void divide(View view){ addOperation(Strings.DIVISION); }
+    public void multiply(View view){ addOperation(Strings.MULTIPLICATY); }
+    public void sum(View view){ addOperation(Strings.SUM); }
+    public void subtract(View view){ addOperation(Strings.SUBTRACT); }
 
 
     public void setAuxNum(String operation){
         auxNum = operation;
-    }
-
-    public void add(View view){
-
-
-    }
-    public void subtract(View view){
-        num1 = Float.parseFloat(editTextTextMultiLine.getText().toString());
-        operation = "-";
-        editTextTextMultiLine.setText("0");
     }
 
     public boolean isEmpty(){return num1 == 0f;}
@@ -183,6 +155,11 @@ public class MainActivity extends AppCompatActivity {
         num1 = 0.0f;
         num2 = 0.0f;
         operation = "";
+    }
+
+    public void addText(String data) {
+        String op = textCalc.getText().toString() + data;
+        textCalc.setText(op);
     }
 
 
