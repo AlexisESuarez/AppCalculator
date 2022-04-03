@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-
     private String operation;
 
     public ArrayList<Object> getOperations() {
@@ -135,4 +134,5 @@ public class Calculator {
     public void addData(Object data){
         operations.add(data);
     }
+
 }
