@@ -108,6 +108,19 @@ public class Calculator {
                     delete.clear();
 
                     break;
+                case Strings.PERCENT:
+                    resultOperation = Double.parseDouble(operations.get(i - 1).toString()) % Double.parseDouble(operations.get(i + 1).toString());
+
+                    delete.add(auxOperations.get(i - 1));
+                    delete.add(auxOperations.get(i + 1));
+                    delete.add(auxOperations.get(i));
+
+                    auxOperations.removeAll(delete);
+                    auxOperations.add(i - 1, resultOperation);
+
+                    delete.clear();
+
+                    break;
 
             }
         }
