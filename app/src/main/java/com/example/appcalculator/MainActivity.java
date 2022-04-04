@@ -103,11 +103,12 @@ public class MainActivity extends AppCompatActivity {
     public void divide(View view){ addOperation(Strings.DIVISION); }
     public void multiply(View view){ addOperation(Strings.MULTIPLICATY); }
     public void sum(View view){ addOperation(Strings.SUM); }
+    public void percent(View view){ addOperation(Strings.PERCENT); }
 
     public void subtract(View view){
         if (isNumber()) {
             addOperation(Strings.SUBTRACT);
-        } else if(auxNum == Strings.DIVISION || auxNum == Strings.SUM || auxNum == Strings.MULTIPLICATY || isEmpty()) {
+        } else if(auxNum == Strings.DIVISION || auxNum == Strings.SUM || auxNum == Strings.MULTIPLICATY ||auxNum == Strings.PERCENT|| isEmpty()) {
             addNumber(Strings.SUBTRACT);
         }
     }
@@ -124,35 +125,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(calculator.getOperation());
 
         return auxNum.equalsIgnoreCase("") && calculator.getOperation().equalsIgnoreCase("");
-    }
-
-    public void same(View view){
-
-        /*num2 = Float.parseFloat(editTextTextMultiLine.getText().toString());
-        if (operation.equals("/")){
-            if (num2 == 0.0f){
-                editTextTextMultiLine.setText("0");
-                Toast.makeText(this, "OPERACION NO VALIDA", Toast.LENGTH_SHORT).show();
-            }else {
-                Double result = num1 / num2;
-                editTextTextMultiLine.setText(result + "");
-            }
-        }else if (operation.equals("*")){
-            float result = num1*num2;
-            editTextTextMultiLine.setText(result + "");
-        }else if (operation.equals("+")){
-            float result = num1+num2;
-            editTextTextMultiLine.setText(result + "");
-        }else if (operation.equals("-")){
-            float result = num1-num2;
-            editTextTextMultiLine.setText(result + "");
-        }
-        num1 = 0.0f;
-        num2 = 0.0f;
-        operation = "";
-
-        */
-
     }
 
     public void addIUText(String data) {

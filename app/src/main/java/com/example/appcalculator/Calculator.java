@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class Calculator {
-
     private String operation;
 
     public ArrayList<Object> getOperations() {
@@ -124,6 +123,19 @@ public class Calculator {
                 case Strings.SUBTRACT:
                     result -= Double.parseDouble(auxOperations.get(i).toString());
                     break;
+                case Strings.PERCENT:
+                    resultOperation = Double.parseDouble(operations.get(i - 1).toString()) % Double.parseDouble(operations.get(i + 1).toString());
+
+                    delete.add(auxOperations.get(i - 1));
+                    delete.add(auxOperations.get(i + 1));
+                    delete.add(auxOperations.get(i));
+
+                    auxOperations.removeAll(delete);
+                    auxOperations.add(i - 1, resultOperation);
+
+                    delete.clear();
+
+                    break;
 
                 case Strings.SUM:
                     result += Double.parseDouble(auxOperations.get(i).toString());
@@ -159,4 +171,5 @@ public class Calculator {
     public void addData(Object data){
         operations.add(data);
     }
+
 }

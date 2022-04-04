@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppCalculator</string>
+    <string name="app_name">Calculator</string>
     <string name="b1">ImageButton1</string>
     <string name="b2">ImageButton2</string>
     <string name="b3">ImageButton3</string>

@@ -75,6 +75,7 @@
                 android:layout_height="50dp"
                 android:backgroundTint="#ffffff"
                 android:contentDescription="@string/b3"
+                android:onClick="percent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@mipmap/porcentaje" />
