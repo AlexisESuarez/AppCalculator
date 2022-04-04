@@ -8,11 +8,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView textCalc;
     private Calculator calculator;
     private String auxNum = "";
+
+    List<Calculator> history = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +140,16 @@ public class MainActivity extends AppCompatActivity {
     public void showResult(View view){
         if (isNumber()){
             calculator.addData(auxNum);
-            textCalc.setText(calculator.calcOperation().toString());
+
+            String result = calculator.calcOperation().toString();
+
+            textCalc.setText(result);
+
+            history.add(calculator);
+            auxNum = result;
+
+            calculator = new Calculator();
+
         }else {
             Toast.makeText(this, "El ultimo número ingresado esta mal.", Toast.LENGTH_SHORT).show();
         }

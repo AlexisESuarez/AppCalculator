@@ -61,7 +61,7 @@ public class Calculator {
 
     public Double calcOperation() {
 
-        double result = 0;
+        double result;
         auxOperations = operations;
 
         while (containsDivOrMulti()) {
@@ -83,8 +83,7 @@ public class Calculator {
                         break;
 
                     case Strings.DIVISION:
-
-                        resultOperation = (Double.parseDouble(auxOperations.get(i - 1).toString()) * Double.parseDouble(auxOperations.get(i + 1).toString()))/100;
+                        resultOperation = (Double.parseDouble(auxOperations.get(i - 1).toString()) / Double.parseDouble(auxOperations.get(i + 1).toString()));
 
                         auxOperations.set(i - 1, resultOperation);
                         auxOperations.remove(i);
@@ -130,7 +129,6 @@ public class Calculator {
                 auxOperations.contains(Strings.MULTIPLICATY) ||
                 auxOperations.contains(Strings.PERCENT);
     }
-
 
     public void addData(Object data){
         operations.add(data);
