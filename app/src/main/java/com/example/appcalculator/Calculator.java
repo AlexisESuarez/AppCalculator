@@ -84,7 +84,7 @@ public class Calculator {
 
                     case Strings.DIVISION:
 
-                        resultOperation = (Double.parseDouble(auxOperations.get(i - 1).toString()) / Double.parseDouble(auxOperations.get(i + 1).toString()));
+                        resultOperation = (Double.parseDouble(auxOperations.get(i - 1).toString()) * Double.parseDouble(auxOperations.get(i + 1).toString()))/100;
 
                         auxOperations.set(i - 1, resultOperation);
                         auxOperations.remove(i);
