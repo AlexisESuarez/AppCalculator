@@ -20,4 +20,5 @@
     <string name="b18">ImageButton18</string>
     <string name="b19">ImageButton19</string>
     <string name="b20">ImageButton20</string>
+    <string name="init_op">Aquí aparecerá la última operación</string>
 </resources>

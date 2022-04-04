@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +17,10 @@ public class MainActivity extends AppCompatActivity {
 
     TextView textCalc;
     private Calculator calculator;
+    private TextView tvResult;
+    private HorizontalScrollView scroll;
     private String auxNum = "";
+
 
     List<Calculator> history = new ArrayList<>();
 
@@ -25,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textCalc = findViewById(R.id.etCalc);
+        tvResult = findViewById(R.id.tvOperation);
+        scroll = findViewById(R.id.scroll);
 
         calculator = new Calculator();
 
@@ -68,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void clear(View view){
         textCalc.setText("0");
+        tvResult.setText(R.string.init_op);
         setAuxNum("");
         calculator = new Calculator();
     }
@@ -113,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     public void subtract(View view){
         if (isNumber()) {
             addOperation(Strings.SUBTRACT);
-        } else if(auxNum == Strings.DIVISION || auxNum == Strings.SUM || auxNum == Strings.MULTIPLICATY ||auxNum == Strings.PERCENT|| isEmpty()) {
+        } else if(auxNum.equals(Strings.DIVISION) || auxNum.equals(Strings.SUM) || auxNum.equals(Strings.MULTIPLICATY) ||auxNum.equals(Strings.PERCENT) || isEmpty()) {
             addNumber(Strings.SUBTRACT);
         }
     }
@@ -137,9 +145,13 @@ public class MainActivity extends AppCompatActivity {
         textCalc.setText(op);
     }
 
-    public void showResult(View view){
-        if (isNumber()){
-            calculator.addData(auxNum);
+    private void calcResult(String number) {
+
+        try {
+            calculator.addData(number);
+
+            String operation = calculator.getOperation() + " =";
+            tvResult.setText(operation);
 
             String result = calculator.calcOperation().toString();
 
@@ -149,13 +161,43 @@ public class MainActivity extends AppCompatActivity {
             auxNum = result;
 
             calculator = new Calculator();
+            calculator.concatValue(auxNum);
 
-        }else {
-            Toast.makeText(this, "El ultimo número ingresado esta mal.", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "Ha ocurrido un error inesperado", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void showResult(View view) {
+        if(!isEmpty()) {
+            if (isNumber()){
+                calcResult(auxNum);
+            }else if(isOperation()) {
+                calcResult("0");
+            } else {
+                Toast.makeText(this, "El ultimo número ingresado esta mal.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     public boolean containsPoint() { return auxNum.contains("."); }
+
+    private boolean isOperation() {
+
+        switch(auxNum) {
+            case Strings.SUM:
+            case Strings.MULTIPLICATY:
+            case Strings.DIVISION:
+                return true;
+
+            case Strings.SUBTRACT:
+                return calculator.getLastOperation().equals(Strings.SUBTRACT);
+
+            default:
+                return false;
+        }
+
+    }
 
 
 }
