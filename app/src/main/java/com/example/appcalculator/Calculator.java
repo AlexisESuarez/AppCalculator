@@ -1,7 +1,9 @@
 package com.example.appcalculator;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class Calculator {
 
@@ -75,62 +77,84 @@ public class Calculator {
         double result = 0;
         auxOperations = operations;
 
-        for (int i = 1; i < auxOperations.toArray().length; i = i + 2) {
+        while (containsDivOrMult()) {
+            for (int i = 1; i < auxOperations.toArray().length; i = i + 2) {
 
-            double resultOperation;
-            ArrayList<Object> delete = new ArrayList<>();
+                double resultOperation;
 
-            switch (auxOperations.get(i).toString()) {
-                case Strings.DIVISION:
+                switch (auxOperations.get(i).toString()) {
+                    case Strings.DIVISION:
 
-                    resultOperation = Double.parseDouble(operations.get(i - 1).toString()) / Double.parseDouble(operations.get(i + 1).toString());
+                        resultOperation = (Double.parseDouble(auxOperations.get(i - 1).toString()) / Double.parseDouble(auxOperations.get(i + 1).toString()));
 
-                    delete.add(auxOperations.get(i - 1));
-                    delete.add(auxOperations.get(i + 1));
-                    delete.add(auxOperations.get(i));
+                        // Iterator iterator = auxOperations.iterator();
 
-                    auxOperations.removeAll(delete);
-                    auxOperations.add(i - 1, resultOperation);
+                        auxOperations.set(i - 1, resultOperation);
+                        auxOperations.remove(i);
+                        auxOperations.remove(i);
 
-                    delete.clear();
+                    /* auxOperations.set(i - 1, resultOperation);
+                    auxOperations.set(i + 1, resultOperation);
+                    auxOperations.set(i, "+"); */
 
-                    break;
+                        break;
 
-                case Strings.MULTIPLICATY:
-                    resultOperation = Double.parseDouble(operations.get(i - 1).toString()) * Double.parseDouble(operations.get(i + 1).toString());
+                    case Strings.MULTIPLICATY:
 
-                    delete.add(auxOperations.get(i - 1));
-                    delete.add(auxOperations.get(i + 1));
-                    delete.add(auxOperations.get(i));
+                        resultOperation = (Double.parseDouble(auxOperations.get(i - 1).toString()) * Double.parseDouble(auxOperations.get(i + 1).toString()));
 
-                    auxOperations.removeAll(delete);
-                    auxOperations.add(i - 1, resultOperation);
+                        auxOperations.set(i - 1, resultOperation);
+                        auxOperations.remove(i);
+                        auxOperations.remove(i);
 
-                    delete.clear();
+                        /* auxOperations.set(i - 1, resultOperation);
+                        auxOperations.set(i + 1, resultOperation);
+                        auxOperations.set(i, "+"); */
 
-                    break;
+                        break;
 
+                }
             }
         }
-        for (int i = 1; i < operations.toArray().length; i = i+2) {
 
+        result = Double.parseDouble(auxOperations.get(0).toString());
+
+        for (int i = 2; i < auxOperations.size(); i = i + 2) {
+            switch (auxOperations.get(i - 1).toString()) {
+                case Strings.SUBTRACT:
+                    result -= Double.parseDouble(auxOperations.get(i).toString());
+                    break;
+
+                case Strings.SUM:
+                    result += Double.parseDouble(auxOperations.get(i).toString());
+                    break;
+            }
+        }
+
+        /* for (int i = 1; i < auxOperations.toArray().length; i = i+2) {
 
             switch (auxOperations.get(i).toString()) {
                 case Strings.SUBTRACT:
 
-                    result += Double.parseDouble(operations.get(i - 1).toString()) - Double.parseDouble(operations.get(i + 1).toString());
+                    result += Double.parseDouble(auxOperations.get(i - 1).toString()) - Double.parseDouble(auxOperations.get(i + 1).toString());
                     break;
 
                 case Strings.SUM:
 
-                    result += Double.parseDouble(operations.get(i - 1).toString()) + Double.parseDouble(operations.get(i + 1).toString());
+                    result += Double.parseDouble(auxOperations.get(i - 1).toString()) + Double.parseDouble(auxOperations.get(i + 1).toString());
                     break;
             }
-        }
+        } */
 
         return result;
 
     }
+
+    private boolean containsDivOrMult() {
+        return auxOperations.contains(Strings.DIVISION) ||
+                auxOperations.contains(Strings.MULTIPLICATY);
+    }
+
 
     public void addData(Object data){
         operations.add(data);
