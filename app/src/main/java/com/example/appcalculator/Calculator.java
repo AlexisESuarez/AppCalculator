@@ -35,7 +35,7 @@ public class Calculator {
 
     public Object getLastOperation() {
 
-        if(operation.length() > 0) {
+        if(operation.length() > 0 && operations.size() > 0) {
             return operations.get(operations.size() - 1);
         } else {
             return "";
@@ -57,15 +57,6 @@ public class Calculator {
 
         return null;
 
-        /*Object op = (operations.size() % 2 == 1) ? operations.get(operations.size() - 2) : operations.get(operations.size() - 1);
-        List<Object> auxOp = operations.subList(0, operations.size() - 1);
-
-        operations.clear();
-        operations.addAll(auxOp);
-
-        operation = operation.substring(0, operation.length() - op.toString().length());
-
-        return op;*/
     }
 
     public Double calcOperation() {

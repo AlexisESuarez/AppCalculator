@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             addIUText(number);
         }
 
-        if(isNumber() || containsPoint() || (calculator.getLastOperation().toString() != Strings.SUBTRACT && auxNum.equals(Strings.SUBTRACT))) {
+        if(isNumber() || containsPoint() || (!calculator.getLastOperation().toString().equals(Strings.SUBTRACT) && auxNum.equals(Strings.SUBTRACT))) {
             auxNum += number;
         } else {
             setAuxNum(number);
