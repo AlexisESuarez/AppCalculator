@@ -1,9 +1,6 @@
 package com.example.appcalculator;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 public class Calculator {
     private String operation;
@@ -76,25 +73,31 @@ public class Calculator {
         double result = 0;
         auxOperations = operations;
 
-        while (containsDivOrMult()) {
+        while (containsDivOrMulti()) {
+
             for (int i = 1; i < auxOperations.toArray().length; i = i + 2) {
 
                 double resultOperation;
 
                 switch (auxOperations.get(i).toString()) {
-                    case Strings.DIVISION:
 
-                        resultOperation = (Double.parseDouble(auxOperations.get(i - 1).toString()) / Double.parseDouble(auxOperations.get(i + 1).toString()));
+                    case Strings.PERCENT:
 
-                        // Iterator iterator = auxOperations.iterator();
+                        resultOperation = (Double.parseDouble(operations.get(i - 1).toString()) * Double.parseDouble(operations.get(i + 1).toString()))/100;
 
                         auxOperations.set(i - 1, resultOperation);
                         auxOperations.remove(i);
                         auxOperations.remove(i);
 
-                    /* auxOperations.set(i - 1, resultOperation);
-                    auxOperations.set(i + 1, resultOperation);
-                    auxOperations.set(i, "+"); */
+                        break;
+
+                    case Strings.DIVISION:
+
+                        resultOperation = (Double.parseDouble(auxOperations.get(i - 1).toString()) / Double.parseDouble(auxOperations.get(i + 1).toString()));
+
+                        auxOperations.set(i - 1, resultOperation);
+                        auxOperations.remove(i);
+                        auxOperations.remove(i);
 
                         break;
 
@@ -106,10 +109,6 @@ public class Calculator {
                         auxOperations.remove(i);
                         auxOperations.remove(i);
 
-                        /* auxOperations.set(i - 1, resultOperation);
-                        auxOperations.set(i + 1, resultOperation);
-                        auxOperations.set(i, "+"); */
-
                         break;
 
                 }
@@ -120,21 +119,9 @@ public class Calculator {
 
         for (int i = 2; i < auxOperations.size(); i = i + 2) {
             switch (auxOperations.get(i - 1).toString()) {
+
                 case Strings.SUBTRACT:
                     result -= Double.parseDouble(auxOperations.get(i).toString());
-                    break;
-                case Strings.PERCENT:
-                    resultOperation = Double.parseDouble(operations.get(i - 1).toString()) % Double.parseDouble(operations.get(i + 1).toString());
-
-                    delete.add(auxOperations.get(i - 1));
-                    delete.add(auxOperations.get(i + 1));
-                    delete.add(auxOperations.get(i));
-
-                    auxOperations.removeAll(delete);
-                    auxOperations.add(i - 1, resultOperation);
-
-                    delete.clear();
-
                     break;
 
                 case Strings.SUM:
@@ -143,28 +130,14 @@ public class Calculator {
             }
         }
 
-        /* for (int i = 1; i < auxOperations.toArray().length; i = i+2) {
-
-            switch (auxOperations.get(i).toString()) {
-                case Strings.SUBTRACT:
-
-                    result += Double.parseDouble(auxOperations.get(i - 1).toString()) - Double.parseDouble(auxOperations.get(i + 1).toString());
-                    break;
-
-                case Strings.SUM:
-
-                    result += Double.parseDouble(auxOperations.get(i - 1).toString()) + Double.parseDouble(auxOperations.get(i + 1).toString());
-                    break;
-            }
-        } */
-
         return result;
 
     }
 
-    private boolean containsDivOrMult() {
+    private boolean containsDivOrMulti() {
         return auxOperations.contains(Strings.DIVISION) ||
-                auxOperations.contains(Strings.MULTIPLICATY);
+                auxOperations.contains(Strings.MULTIPLICATY) ||
+                auxOperations.contains(Strings.PERCENT);
     }
 
 
